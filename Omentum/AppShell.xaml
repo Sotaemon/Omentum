@@ -7,7 +7,7 @@
     Title="Omentum">
 
     <ShellContent
-        Title="Home"
+        Title="Omentum"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
