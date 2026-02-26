@@ -11,7 +11,10 @@ namespace Omentum
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            var window = new Window(new AppShell());
+            window.MinimumHeight = 540;
+            window.MinimumWidth = 960;
+            return window;
         }
     }
 }

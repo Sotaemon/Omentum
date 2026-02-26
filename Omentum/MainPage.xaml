@@ -1,24 +1,337 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Omentum.MainPage">
-    <Grid ColumnDefinitions="3*, 5*">
-        <Grid Grid.Row="0" Grid.Column="0">
-            <Border
-                Margin="5"
-                StrokeThickness="4">
-                <Label
-                    Text="Info"
-                    FontAttributes="Bold">
-                </Label>
-            </Border>
-        </Grid>
-        <Grid Grid.Row="0" Grid.Column="1">
-            <Border
-                Margin="5"
-                StrokeThickness="4">
+             x:Class="Omentum.MainPage"
+             BackgroundColor="{StaticResource Gray950}">
+<Grid ColumnDefinitions="*,2*" RowDefinitions="*" Padding="10">
+        
+        <!-- 左侧：性能信息面板 -->
+        <Border Grid.Column="0" 
+                Margin="0,0,5,0"
+                Stroke="{StaticResource Primary}"
+                StrokeThickness="2"
+                BackgroundColor="{StaticResource Gray900}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12"/>
+            </Border.StrokeShape>
+            <Grid RowDefinitions="Auto,Auto" Padding="15">
+                <!-- 标题 -->
+                <Label Grid.Row="0"
+                       Text="性能监控"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource White}"
+                       Margin="0,0,0,15"/>
+                
+                <!-- 性能指标卡片 -->
+                <Grid Grid.Row="1" RowDefinitions="*,*,*,*,*,*" RowSpacing="12">
+                    
+                    <!-- CPU 使用率 -->
+                    <Border Grid.Row="0" Stroke="{StaticResource Secondary}" StrokeThickness="1" BackgroundColor="{StaticResource Gray600}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="Auto,*" Padding="12" ColumnSpacing="12">
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                   Text="CPU"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#FF6B6B"
+                                   VerticalOptions="Center"/>
+                            <Grid Grid.Column="1" RowDefinitions="Auto,Auto">
+                                <Label Grid.Row="0"
+                                       Text="使用率"
+                                       FontSize="11"
+                                       TextColor="{StaticResource White}"/>
+                                <Label Grid.Row="1"
+                                       Text="0%"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource White}"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- GPU 使用率 -->
+                    <Border Grid.Row="1" Stroke="{StaticResource Secondary}" StrokeThickness="1" BackgroundColor="{StaticResource Gray600}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="Auto,*" Padding="12" ColumnSpacing="12">
+                            <Label Grid.Column="0"
+                                   Text="GPU"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#4ECDC4"
+                                   VerticalOptions="Center"/>
+                            <Grid Grid.Column="1" RowDefinitions="Auto,Auto">
+                                <Label Grid.Row="0"
+                                       Text="使用率"
+                                       FontSize="11"
+                                       TextColor="{StaticResource White}"/>
+                                <Label Grid.Row="1"
+                                       Text="0%"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource White}"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- 内存使用 -->
+                    <Border Grid.Row="2" Stroke="{StaticResource Secondary}" StrokeThickness="1" BackgroundColor="{StaticResource Gray600}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="Auto,*" Padding="12" ColumnSpacing="12">
+                            <Label Grid.Column="0"
+                                   Text="Memory"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#FFE66D"
+                                   VerticalOptions="Center"/>
+                            <Grid Grid.Column="1" RowDefinitions="Auto,Auto">
+                                <Label Grid.Row="0"
+                                       Text="已使用 / 总计"
+                                       FontSize="11"
+                                       TextColor="{StaticResource White}"/>
+                                <Label Grid.Row="1"
+                                       Text="0 GB / 0 GB"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource White}"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- 网络使用 -->
+                    <Border Grid.Row="3" Stroke="{StaticResource Secondary}" StrokeThickness="1" BackgroundColor="{StaticResource Gray600}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="Auto,*" Padding="12" ColumnSpacing="12">
+                            <Label Grid.Column="0"
+                                   Text="Network"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#95E1D3"
+                                   VerticalOptions="Center"/>
+                            <Grid Grid.Column="1" RowDefinitions="Auto,Auto">
+                                <Label Grid.Row="0"
+                                       Text="下载 / 上传"
+                                       FontSize="11"
+                                       TextColor="{StaticResource White}"/>
+                                <Label Grid.Row="1"
+                                       Text="0 MB/s / 0 MB/s"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource White}"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- 电池状态 -->
+                    <Border Grid.Row="4" Stroke="{StaticResource Secondary}" StrokeThickness="1" BackgroundColor="{StaticResource Gray600}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="Auto,*" Padding="12" ColumnSpacing="12">
+                            <Label Grid.Column="0"
+                                   Text="Battery"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#DDA0DD"
+                                   VerticalOptions="Center"/>
+                            <Grid Grid.Column="1" RowDefinitions="Auto,Auto">
+                                <Label Grid.Row="0"
+                                       Text="电量 / 状态"
+                                       FontSize="11"
+                                       TextColor="{StaticResource White}"/>
+                                <Label Grid.Row="1"
+                                       Text="0% / 充电中"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource White}"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
 
-            </Border>
-        </Grid>
+                    <!-- 风扇转速 -->
+                    <Border Grid.Row="5" Stroke="{StaticResource Secondary}" StrokeThickness="1" BackgroundColor="{StaticResource Gray600}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+                        <Grid ColumnDefinitions="Auto,*" Padding="12" ColumnSpacing="12">
+                            <Label Grid.Column="0"
+                                   Text="Fans"
+                                   FontSize="14"
+                                   FontAttributes="Bold"
+                                   TextColor="#FF8C42"
+                                   VerticalOptions="Center"/>
+                            <Grid Grid.Column="1" RowDefinitions="Auto,Auto">
+                                <Label Grid.Row="0"
+                                       Text="左 / 右"
+                                       FontSize="11"
+                                       TextColor="{StaticResource White}"/>
+                                <Label Grid.Row="1"
+                                       Text="0 RPM / 0 RPM"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource White}"/>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+                
+            </Grid>
+        </Border>
+        
+        <!-- 右侧：设置面板 -->
+        <Border Grid.Column="1"
+                Margin="5,0,0,0"
+                Stroke="{StaticResource Primary}"
+                StrokeThickness="2"
+                BackgroundColor="{StaticResource Gray900}">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="12"/>
+            </Border.StrokeShape>
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" Padding="15">
+                <!-- 标题 -->
+                <Label Grid.Row="0"
+                       Text="性能设置"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource White}"
+                       Margin="0,0,0,20"/>
+
+                <!-- 风扇配置栏目 -->
+                <Border Grid.Row="1"
+                        Stroke="{StaticResource Secondary}"
+                        StrokeThickness="1"
+                        BackgroundColor="{StaticResource Gray600}"
+                        Margin="0,0,0,15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Border.StrokeShape>
+                    <Grid Padding="15" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
+                        <Label Text="风扇配置"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource White}"/>
+                        <Grid Grid.Row="1" RowDefinitions="Auto,Auto" RowSpacing="10">
+                            <Label Text="风扇模式"
+                                   FontSize="14"
+                                   TextColor="{StaticResource White}"/>
+                            <Picker Grid.Row="1"
+                                    TextColor="{StaticResource White}"
+                                    BackgroundColor="{StaticResource Gray600}"
+                                    FontFamily="SerifSource">
+                                <Picker.Items>
+                                    <x:String>静音模式</x:String>
+                                    <x:String>性能模式</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Grid>
+                        <Grid Grid.Row="2" RowDefinitions="Auto,Auto" RowSpacing="10">
+                            <Label Text="风扇转速"
+                                   FontSize="14"
+                                   TextColor="{StaticResource White}"/>
+                            <Grid Grid.Row="1" RowDefinitions="Auto,Auto">
+                                <Grid ColumnDefinitions="Auto,*,Auto" RowSpacing="5">
+                                    <Label Grid.Column="0"
+                                           Text="自动"
+                                           FontSize="10"
+                                           TextColor="{StaticResource Gray300}"
+                                           VerticalOptions="Center"/>
+                                    <Slider Grid.Column="1"
+                                            Minimum="0"
+                                            Maximum="100"
+                                            Value="50"
+                                            MinimumTrackColor="{StaticResource Primary}"
+                                            MaximumTrackColor="{StaticResource Gray600}"/>
+                                    <Label Grid.Column="2"
+                                           Text="6400 RPM"
+                                           FontSize="10"
+                                           TextColor="{StaticResource Gray300}"
+                                           VerticalOptions="Center"/>
+                                </Grid>
+                                <Grid Grid.Row="1" ColumnDefinitions="*,Auto">
+                                    <Label Grid.Column="1"
+                                           Text="4000 RPM"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource White}"
+                                           HorizontalTextAlignment="End"/>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <!-- 性能控制栏目 -->
+                <Border Grid.Row="2"
+                        Stroke="{StaticResource Secondary}"
+                        StrokeThickness="1"
+                        BackgroundColor="{StaticResource Gray600}"
+                        Margin="0,0,0,15">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8"/>
+                    </Border.StrokeShape>
+                    <Grid Padding="15" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="12">
+                        <Label Text="性能控制"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource White}"/>
+                        <Grid Grid.Row="1" RowDefinitions="Auto,Auto" RowSpacing="10">
+                            <Label Text="性能模式"
+                                   FontSize="14"
+                                   TextColor="{StaticResource White}"/>
+                            <Picker Grid.Row="1"
+                                    TextColor="{StaticResource White}"
+                                    BackgroundColor="{StaticResource Gray600}"
+                                    FontFamily="SerifSource">
+                                <Picker.Items>
+                                    <x:String>平衡模式</x:String>
+                                    <x:String>高性能模式</x:String>
+                                    <x:String>省电模式</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Grid>
+                        <Grid Grid.Row="2" RowDefinitions="Auto,Auto" RowSpacing="10">
+                            <Label Text="CPU控制"
+                                   FontSize="14"
+                                   TextColor="{StaticResource White}"/>
+                            <Picker Grid.Row="1"
+                                    TextColor="{StaticResource White}"
+                                    BackgroundColor="{StaticResource Gray600}"
+                                    FontFamily="SerifSource">
+                                <Picker.Items>
+                                    <x:String>自动</x:String>
+                                    <x:String>最大性能</x:String>
+                                    <x:String>最大节能</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Grid>
+                        <Grid Grid.Row="3" RowDefinitions="Auto,Auto" RowSpacing="10">
+                            <Label Text="GPU控制"
+                                   FontSize="14"
+                                   TextColor="{StaticResource White}"/>
+                            <Picker Grid.Row="1"
+                                    TextColor="{StaticResource White}"
+                                    BackgroundColor="{StaticResource Gray600}"
+                                    FontFamily="SerifSource">
+                                <Picker.Items>
+                                    <x:String>自动</x:String>
+                                    <x:String>最大性能</x:String>
+                                    <x:String>最大节能</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
     </Grid>
 </ContentPage>
