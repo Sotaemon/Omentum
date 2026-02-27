@@ -1,12 +1,19 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace Omentum
+﻿namespace Omentum
 {
     public partial class App : Application
     {
         public App()
         {
-            InitializeComponent();
+            bool isNewInstance = false;
+            using (Mutex mutex = new Mutex(true, "OmentumMutex", out isNewInstance))
+            {
+                if (!isNewInstance)
+                {
+                    return;
+                }
+
+                InitializeComponent();
+            }
         }
 
         protected override Window CreateWindow(IActivationState? activationState)

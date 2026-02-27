@@ -57,8 +57,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+		<PackageReference Include="LibreHardwareMonitorLib" Version="0.9.6" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.3" />
+		<PackageReference Include="System.Diagnostics.PerformanceCounter" Version="10.0.3" />
+		<PackageReference Include="System.Management" Version="10.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- 排除 Ref 文件夹中的参考代码 -->
+		<Compile Remove="Ref\**" />
+		<EmbeddedResource Remove="Ref\**" />
+		<MauiXaml Remove="Ref\**" />
+		<None Remove="Ref\**" />
 	</ItemGroup>
 
 </Project>
